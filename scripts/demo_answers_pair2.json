@@ -1,0 +1,27 @@
+{
+  "_note": "Short scripted answers for a CLI test run on pair 2 (JD 2 + Ananya's resume). Picked by keyword; question 6 is skipped on purpose to test skip = 0 with no LLM call.",
+  "skip_question_number": 6,
+  "bank": [
+    {"keywords": ["next.js", "server-side", "ssr", "rendering"],
+     "answer": "Next.js renders pages on the server (SSR) or at build time (SSG), so the first paint is faster and pages are SEO friendly. I would use getStaticProps for mostly static pages and SSR for user-specific data."},
+    {"keywords": ["accessib", "wcag", "screen reader", "aria"],
+     "answer": "Use semantic HTML first, label every input, keep keyboard focus visible and in order, check colour contrast, and add ARIA only when native elements cannot do it. I test with axe and a screen reader."},
+    {"keywords": ["ci/cd", "github actions", "pipeline", "deploy"],
+     "answer": "A GitHub Actions workflow runs on every pull request: install, lint, run Jest tests and build. On merge to main it deploys. Failing tests block the merge."},
+    {"keywords": ["websocket", "real-time", "realtime"],
+     "answer": "I open one WebSocket connection, update React Query cache when messages arrive, and reconnect with backoff if it drops."},
+    {"keywords": ["task board", "kanban", "drag"],
+     "answer": "In the Task Board App I used React with TypeScript and Firebase for real-time sync. Drag-and-drop updates local state first, then writes to Firebase, so it feels instant for the 3 users."},
+    {"keywords": ["weather"],
+     "answer": "The Weather Dashboard calls the OpenWeather API and shows a 7-day forecast with Chart.js. I cached responses for 10 minutes to avoid hitting the API limit."},
+    {"keywords": ["react query", "duplicate", "api calls", "state"],
+     "answer": "I moved server state to React Query, which dedupes identical requests and caches them, so duplicate API calls dropped by about 40%."},
+    {"keywords": ["learn", "new technology", "quickly"],
+     "answer": "When our team adopted TypeScript I had one week. I did the official handbook, converted one small component a day, and asked a senior to review. By the end of the sprint I shipped a fully typed form."},
+    {"keywords": ["disagree", "conflict", "teammate"],
+     "answer": "A teammate wanted Redux for everything. I suggested React Query for server data. We built a small prototype of both, compared the code, and the team chose React Query. We stayed friendly and it cut boilerplate."},
+    {"keywords": ["deadline", "pressure", "ownership", "mistake", "bug"],
+     "answer": "Before a release I found a bug that broke checkout on Safari. I told my lead, reproduced it, fixed the CSS issue, added a test and we shipped on time."}
+  ],
+  "default": "I would break the problem into small steps, build it with React and TypeScript, test it with Jest and React Testing Library, and measure the result."
+}

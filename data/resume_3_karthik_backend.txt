@@ -1,0 +1,28 @@
+KARTHIK MENON (fictional test candidate)
+Software Engineer | karthik.test@example.com | Pune
+
+SUMMARY
+Software engineer with 1.5 years of experience in Python backend development and basic web development.
+
+EXPERIENCE
+Associate Software Engineer — DataBridge Systems (fictional), Pune | Jun 2025 – Present
+- Built 8 REST APIs with Flask for an internal inventory tool.
+- Wrote MySQL queries and stored procedures for monthly reports.
+- Wrote unit tests with unittest for core API modules.
+- Used Git and Jira in a team of 6.
+
+Intern — WebWorks (fictional), Pune | Jan 2025 – May 2025
+- Built simple pages with HTML, CSS and jQuery.
+
+PROJECTS
+Expense Tracker API — Python, Flask, MySQL
+- CRUD API with login using sessions; deployed on a college server.
+
+Student Portal — HTML, CSS, JavaScript
+- Static site for course schedules.
+
+SKILLS
+Python, Flask, MySQL, SQL, REST APIs, HTML, CSS, JavaScript, jQuery, unittest, Git, Jira, Linux basics
+
+EDUCATION
+B.E., Information Technology — Pune University (fictional record), 2025

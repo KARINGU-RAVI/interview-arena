@@ -1,0 +1,39 @@
+SAMPLE JOB DESCRIPTION (fictional company, for testing only)
+
+Company: PixelForge Labs
+Role: Frontend Developer (React)
+Location: Bengaluru (Remote friendly)
+Experience: 1-3 years
+
+About the role
+Build fast, accessible web interfaces for our SaaS analytics product used by 50,000+ users.
+
+Responsibilities
+- Build reusable UI components in React and TypeScript.
+- Manage application state with Redux Toolkit or React Query.
+- Integrate REST and WebSocket APIs.
+- Write unit tests with Jest and React Testing Library.
+- Improve performance (Core Web Vitals, code splitting, lazy loading).
+- Ensure accessibility (WCAG 2.1) and responsive design.
+- Collaborate with designers using Figma.
+
+Required skills
+- JavaScript (ES6+)
+- TypeScript
+- React (hooks, context)
+- HTML5 and CSS3
+- Redux Toolkit or React Query
+- REST APIs
+- Jest / React Testing Library
+- Git
+
+Nice to have
+- Next.js
+- Tailwind CSS
+- WebSockets
+- Web accessibility (WCAG)
+- Figma
+- CI/CD (GitHub Actions)
+
+Soft skills
+- Attention to detail, collaboration with design and backend teams, clear written communication.

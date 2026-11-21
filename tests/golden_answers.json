@@ -1,0 +1,126 @@
+{
+  "_note": "Golden set for evaluator tests. PRD acceptance: strong answers >= 7, weak answers < 5 (same rule for every item). Consistency: each answer scored 3 times, max difference <= 1.",
+  "items": [
+    {
+      "id": "T1",
+      "round": "technical",
+      "jd": "jd_1",
+      "question": "What is Retrieval-Augmented Generation (RAG) and why is it used?",
+      "strong": "RAG combines a retriever with an LLM. Documents are split into chunks, converted to embeddings and stored in a vector database. At query time the question is embedded, the most similar chunks are retrieved and added to the prompt, and the LLM answers using that context. It reduces hallucination, lets the model use private or up-to-date data without retraining, and lets us show sources. Key choices are chunk size, the embedding model, top-k and evaluating retrieval quality.",
+      "weak": "RAG is when the AI searches Google and gives the answer.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    },
+    {
+      "id": "T2",
+      "round": "technical",
+      "jd": "jd_1",
+      "question": "How does tool calling work in an LLM agent?",
+      "strong": "The tools are described to the model with a name, description and JSON schema for arguments. The model does not run the tool; it returns a structured request saying which tool to call and with what arguments. Our code validates and executes the tool, then sends the result back as a tool message. The model then decides whether to call another tool or give the final answer. This loop continues until the task is done or a step limit is reached.",
+      "weak": "The model directly runs the Python function by itself.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    },
+    {
+      "id": "T3",
+      "round": "technical",
+      "jd": "jd_1",
+      "question": "What is the Model Context Protocol (MCP)?",
+      "strong": "MCP is an open standard for connecting AI applications to tools and data. An MCP server exposes tools, resources and prompts; an MCP client inside the agent app discovers and calls them over a transport like stdio or HTTP. The benefit is that one server can be reused by many agents and frameworks instead of writing custom integrations for each. For example, I can write one Gmail MCP server and use it from LangGraph and from Claude Desktop.",
+      "weak": "MCP is a type of machine learning model.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    },
+    {
+      "id": "T4",
+      "round": "technical",
+      "jd": "jd_1",
+      "question": "When would you use LangGraph instead of a simple LangChain chain?",
+      "strong": "When the workflow needs state, branching, loops or human approval. LangGraph models the app as a graph of nodes with a shared state, conditional edges for routing, checkpointers to persist state, and interrupts to pause for human input. A simple chain is fine for a fixed linear prompt -> model -> parser flow, but an interview with a 10-question loop and approval gates fits LangGraph better.",
+      "weak": "LangGraph is newer so it is always better.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    },
+    {
+      "id": "T5",
+      "round": "technical",
+      "jd": "jd_2",
+      "question": "What is the difference between useEffect and useMemo in React?",
+      "strong": "useEffect runs side effects after render, like fetching data, subscriptions or updating the document title, and can return a cleanup function. useMemo runs during render and caches the result of an expensive calculation until its dependencies change. useEffect is for doing things; useMemo is for avoiding recalculating a value. Overusing useMemo adds complexity, so I use it only for measurable performance issues.",
+      "weak": "Both are the same, they are used for state.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    },
+    {
+      "id": "P1",
+      "round": "project",
+      "jd": "jd_2",
+      "question": "In your e-commerce admin panel, how did you reduce duplicate API calls by 40%?",
+      "strong": "Different components were fetching the same order data separately. I moved server state into React Query with shared query keys, so components reused the cached data. I set a staleTime of 30 seconds and used invalidation after mutations. I measured calls in the network tab before and after over a typical session: about 50 requests dropped to 30, which is the 40% reduction.",
+      "weak": "I used React Query and it became faster.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5,
+        "_recheck_phase9": "Weak answer scored 4.6 on 21 Nov 2026 (passes < 5 but close). Re-check in Phase 9."
+      }
+    },
+    {
+      "id": "P2",
+      "round": "project",
+      "jd": "jd_3",
+      "question": "Explain how authentication works in your Expense Tracker API.",
+      "strong": "Users log in with email and password; passwords are hashed with bcrypt. On success, Flask creates a server-side session and sends a session cookie. Protected routes check the session before running. I know the limitation: sessions don't scale well across multiple servers, so for the full-stack role I would move to JWT access tokens with short expiry and refresh tokens, or OAuth2 for third-party login.",
+      "weak": "There is a login page, and then the user can use the app.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    },
+    {
+      "id": "P3",
+      "round": "project",
+      "jd": "jd_2",
+      "question": "How did you improve Largest Contentful Paint from 4.1s to 2.3s?",
+      "strong": "I used Lighthouse and the Performance panel to find the cause: a large JavaScript bundle and an unoptimised hero image. I split routes with React.lazy and Suspense, lazy-loaded below-the-fold components, converted the hero image to WebP with explicit width and height, and preloaded it. I re-measured on a throttled 4G profile to confirm 2.3s.",
+      "weak": "I optimised the code and images.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    },
+    {
+      "id": "H1",
+      "round": "hr",
+      "jd": "any",
+      "question": "Tell me about a time you had a disagreement with a teammate.",
+      "strong": "Situation: in my last project, a teammate wanted to rewrite our API layer two weeks before a release. Task: I was responsible for delivery and felt the risk was too high. Action: I asked for 30 minutes to compare both options with data; we listed the bugs the rewrite would fix and the testing time it needed, and agreed to fix the two critical bugs now and plan the rewrite for the next sprint. Result: we released on time with zero critical issues, and the rewrite shipped a sprint later. I learned to use data instead of opinions in disagreements.",
+      "weak": "I don't really have disagreements, I get along with everyone.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    },
+    {
+      "id": "H2",
+      "round": "hr",
+      "jd": "any",
+      "question": "Describe a time you learned a new technology quickly.",
+      "strong": "Situation: our team needed a real-time order feed and nobody had used WebSockets. Task: I volunteered to build it within one sprint. Action: I spent two days on the docs and a small prototype, shared a one-page design with the lead, then built it with reconnection and error handling and paired with QA on edge cases. Result: the feed went live in 8 days, replaced polling and cut server requests by about 60%. Since then I keep a habit of building a small prototype before using any new technology at work.",
+      "weak": "I learn fast. I watched YouTube videos and learned it.",
+      "expected": {
+        "strong_min": 7,
+        "weak_below": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+SAMPLE JOB DESCRIPTION (fictional company, for testing only)
+
+Company: GreenLedger Fintech
+Role: Full Stack Developer (Python + React)
+Location: Pune (Onsite)
+Experience: 2-4 years
+
+About the role
+Build and maintain our payments dashboard and backend services that process 1 million transactions a day.
+
+Responsibilities
+- Build backend REST APIs with Python (FastAPI or Django).
+- Design PostgreSQL schemas and write efficient SQL queries.
+- Build frontend features in React.
+- Containerise services with Docker and deploy on AWS (EC2, ECS, RDS).
+- Write unit and integration tests (pytest).
+- Implement authentication and authorization (JWT, OAuth2).
+- Participate in code reviews and on-call support.
+
+Required skills
+- Python
+- FastAPI or Django
+- PostgreSQL / SQL
+- React
+- Docker
+- AWS (EC2, ECS, RDS)
+- pytest
+- JWT / OAuth2
+- Git
+
+Nice to have
+- Redis
+- Kubernetes
+- CI/CD pipelines
+- Message queues (Kafka or RabbitMQ)
+- Payment systems experience
+
+Soft skills
+- Ownership, problem solving, working under deadlines, clear communication.

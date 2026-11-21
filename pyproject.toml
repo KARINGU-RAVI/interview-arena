@@ -1,0 +1,21 @@
+# Tool settings only (the app is run directly, not installed as a package).
+# Dev tools: pip install -r requirements-dev.txt
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+extend-exclude = [".venv", "outputs", ".fastembed_cache"]
+
+[tool.ruff.lint]
+# F = pyflakes (real bugs), E/W = style, I = import order, UP = modern syntax, B = bugbear (likely bugs)
+select = ["F", "E", "W", "I", "UP", "B"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["config", "schemas", "scoring", "report", "evaluator", "gap_analysis",
+                     "question_planner", "pdf_parser", "mcp_client", "crew", "graph", "llm",
+                     "rag", "ui", "mcp_server"]
+
+[tool.vulture]
+# Pydantic fields, TypedDict keys and decorator-registered functions look "unused" to vulture.
+exclude = [".venv/", "tests/"]
+min_confidence = 80

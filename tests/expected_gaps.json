@@ -1,0 +1,61 @@
+{
+  "_note": "Ground truth for gap-analysis accuracy tests (target: >= 80% correct). Status: matched | partial | missing. Fictional pairs only. An optional private pair can be added locally in tests/local/expected_gaps_private.json (git-ignored); its test is skipped when that file or its resume is absent.",
+  "pair_2": {
+    "jd": "data/jd_2_frontend_developer.txt",
+    "resume": "data/resume_2_ananya_frontend.txt",
+    "expected_match_percent_range": [
+      80,
+      100
+    ],
+    "required": {
+      "JavaScript (ES6+)": "matched",
+      "TypeScript": "matched",
+      "React (hooks, context)": "matched",
+      "HTML5 and CSS3": "matched",
+      "Redux Toolkit or React Query": "matched",
+      "REST APIs": "matched",
+      "Jest / React Testing Library": "matched",
+      "Git": "matched"
+    },
+    "nice_to_have": {
+      "Next.js": "missing",
+      "Tailwind CSS": "matched",
+      "WebSockets": "matched",
+      "Web accessibility (WCAG)": "missing",
+      "Figma": "matched",
+      "CI/CD (GitHub Actions)": "missing"
+    }
+  },
+  "pair_3": {
+    "jd": "data/jd_3_fullstack_developer.txt",
+    "resume": "data/resume_3_karthik_backend.txt",
+    "expected_match_percent_range": [
+      30,
+      50
+    ],
+    "required": {
+      "Python": "matched",
+      "FastAPI or Django": "partial",
+      "PostgreSQL / SQL": "partial",
+      "React": "missing",
+      "Docker": "missing",
+      "AWS (EC2, ECS, RDS)": "missing",
+      "pytest": "partial",
+      "JWT / OAuth2": "partial",
+      "Git": "matched"
+    },
+    "nice_to_have": {
+      "Redis": "missing",
+      "Kubernetes": "missing",
+      "CI/CD pipelines": "missing",
+      "Message queues (Kafka or RabbitMQ)": "missing",
+      "Payment systems experience": "missing"
+    },
+    "_reasoning": {
+      "FastAPI or Django": "Has Flask (similar Python web framework) -> partial",
+      "PostgreSQL / SQL": "Has MySQL + SQL, not PostgreSQL -> partial",
+      "pytest": "Has unittest, not pytest -> partial",
+      "JWT / OAuth2": "Has session login only -> partial"
+    }
+  }
+}

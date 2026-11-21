@@ -1,0 +1,50 @@
+# Interview Arena theme — design tokens from docs/ui_design_spec.md §1.
+# Keys verified against Streamlit 1.67 (streamlit.config options). No custom JS.
+
+[theme]
+base = "light"
+primaryColor = "#2563EB"              # Primary: buttons, progress, links
+backgroundColor = "#FFFFFF"           # Surface
+secondaryBackgroundColor = "#F8FAFC"  # Surface-alt: sidebar, inputs
+textColor = "#0F172A"                 # Text
+borderColor = "#E2E8F0"               # Border: cards, inputs
+linkColor = "#2563EB"
+font = "sans-serif"
+baseFontSize = 16                     # Body 16px
+baseRadius = "0.75rem"                # 12px cards
+buttonRadius = "0.5rem"
+metricValueFontSize = "2rem"
+# h1 = page title 28/700 · h2/h3 = section title 20/600 · h4 = question 20/600
+headingFontSizes = ["28px", "20px", "20px", "20px", "16px", "14px"]
+headingFontWeights = [700, 600, 600, 600, 600, 600]
+
+# Status colours. *Color = spec token (icons, fills, progress). *TextColor is a darker shade of
+# the same hue so badge/callout TEXT meets WCAG AA (4.5:1) on the soft background — the spec
+# tokens #16A34A / #D97706 on their soft backgrounds are only ~3:1.
+greenColor = "#16A34A"
+greenBackgroundColor = "#F0FDF4"
+greenTextColor = "#15803D"
+orangeColor = "#D97706"
+orangeBackgroundColor = "#FFFBEB"
+orangeTextColor = "#B45309"
+redColor = "#DC2626"
+redBackgroundColor = "#FEF2F2"
+redTextColor = "#B91C1C"
+blueColor = "#2563EB"
+blueBackgroundColor = "#EFF6FF"
+blueTextColor = "#1D4ED8"
+paddingTop = "1rem"                   # less empty space above the first element
+paddingBottom = "2rem"
+
+[server]
+maxUploadSize = 2                     # MB — PRD FR-1.1 (resume PDF up to 2 MB)
+# DEVELOPMENT defaults: reload when a .py file is saved. Production turns both off:
+#   scripts/run_prod.ps1  (or env STREAMLIT_SERVER_RUN_ON_SAVE=false, STREAMLIT_SERVER_FILE_WATCHER_TYPE=none)
+runOnSave = true
+fileWatcherType = "auto"
+
+[browser]
+gatherUsageStats = false              # no usage telemetry
+
+[client]
+toolbarMode = "minimal"               # hide Deploy and the developer menu

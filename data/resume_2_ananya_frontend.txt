@@ -1,0 +1,33 @@
+ANANYA REDDY (fictional test candidate)
+Frontend Developer | ananya.test@example.com | Hyderabad
+
+SUMMARY
+Frontend developer with 2 years of experience building responsive React applications. Focused on clean components, performance and accessibility.
+
+EXPERIENCE
+Frontend Developer — BrightApps Solutions (fictional), Hyderabad | Jan 2025 – Present
+- Built 25+ reusable React components with TypeScript for an e-commerce admin panel.
+- Moved server state to React Query, cutting duplicate API calls by 40%.
+- Integrated REST APIs and a WebSocket feed for live order updates.
+- Improved Largest Contentful Paint from 4.1s to 2.3s using code splitting and lazy loading.
+- Wrote unit tests with Jest and React Testing Library (65% coverage).
+
+Junior Web Developer — CodeNest (fictional), Hyderabad | Jul 2024 – Dec 2024
+- Built landing pages with HTML5, CSS3 and JavaScript.
+- Converted Figma designs into responsive pages.
+
+PROJECTS
+Task Board App — React, TypeScript, Tailwind CSS, Firebase
+- Drag-and-drop Kanban board with real-time sync for 3 users.
+
+Weather Dashboard — React, OpenWeather API, Chart.js
+- Shows 7-day forecast charts; deployed on Netlify.
+
+SKILLS
+JavaScript (ES6+), TypeScript, React, React Query, HTML5, CSS3, Tailwind CSS, REST APIs, WebSockets, Jest, React Testing Library, Git, Figma
+
+EDUCATION
+B.Tech, Computer Science — JNTU Hyderabad (fictional record), 2024
+
+CERTIFICATIONS
+Meta Front-End Developer (sample entry for testing)

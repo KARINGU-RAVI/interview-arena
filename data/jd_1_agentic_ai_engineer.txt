@@ -1,0 +1,45 @@
+SAMPLE JOB DESCRIPTION (fictional company, for testing only)
+
+Company: NovaCloud Technologies
+Role: Agentic AI Engineer
+Location: Hyderabad (Hybrid)
+Experience: 1-3 years
+
+About the role
+We are building AI agents that automate customer and internal workflows on AWS. You will design, build and deploy multi-agent systems that use retrieval, tools and memory to complete real tasks.
+
+Responsibilities
+- Design and build agentic AI applications using Python.
+- Build multi-agent workflows with LangGraph and LangChain; evaluate CrewAI and AutoGen for team-based agents.
+- Implement Retrieval-Augmented Generation (RAG) pipelines: chunking, embeddings, vector search and evaluation.
+- Integrate agents with tools and external systems using the Model Context Protocol (MCP).
+- Build and deploy agents on AWS using Amazon Bedrock and Amazon Bedrock AgentCore (Runtime, Memory, Gateway).
+- Integrate the Claude API and other LLM APIs into applications; design prompts and structured outputs.
+- Use AI coding assistants such as Claude Code to speed up development, debugging and testing.
+- Write tests and evaluation sets to measure agent quality, and monitor agents in production.
+
+Required skills
+- Python (strong)
+- Agentic AI concepts: tool calling, planning, memory, multi-agent orchestration
+- LangGraph
+- LangChain
+- RAG (Retrieval-Augmented Generation)
+- Vector databases (e.g. Chroma, FAISS, OpenSearch)
+- Model Context Protocol (MCP)
+- Amazon Bedrock
+- Amazon Bedrock AgentCore
+- AWS fundamentals (IAM, Lambda, S3)
+- REST APIs
+- Git
+
+Nice to have
+- CrewAI
+- AutoGen / Microsoft Agent Framework
+- Claude API
+- Claude Code
+- FastAPI
+- React or another frontend framework
+- Docker
+
+Soft skills
+- Clear communication, ownership, ability to learn quickly, customer focus.

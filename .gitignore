@@ -1,0 +1,23 @@
+# secrets — never commit
+.env
+credentials.json
+token.json
+.streamlit/secrets.toml
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# generated
+outputs/
+*.log
+chroma/
+.fastembed_cache/
+
+# personal data — never commit
+# a private resume used for local testing
+data/resume_1_*.pdf
+tests/local/
+.ruff_cache/

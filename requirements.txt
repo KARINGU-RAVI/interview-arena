@@ -1,0 +1,29 @@
+# Runtime dependencies (pinned versions: requirements.lock.txt; dev tools: requirements-dev.txt)
+
+# orchestration
+langgraph
+langchain-core
+# llm clients (free tiers)
+langchain-google-genai
+langchain-groq
+langchain-openai
+# extraction crew
+crewai
+# validation / config
+pydantic
+python-dotenv
+# rag
+fastembed
+chromadb
+# pdf in / out
+pypdf
+fpdf2
+markdown
+# mcp
+mcp
+langchain-mcp-adapters
+# gmail
+google-api-python-client
+google-auth-oauthlib
+# ui
+streamlit

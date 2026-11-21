@@ -39,7 +39,7 @@ All notable changes to Interview Arena. The project was built in phases; this fi
   ~92 s per session, scoring drift up to 1.1 (accepted: Gemini kept as the scorer for capacity;
   Groq available as an option). Sample report PDF from a fictional session.
 - **Phase 10 — README.** Recruiter-friendly README (architecture diagram, results, engineering
-  highlights, quick start), demo GIF placeholder. Public deployment is left as future work.
+  highlights, quick start) with four app screenshots taken on fictional sample data. Public deployment is left as future work.
 
 ### Fixes
 

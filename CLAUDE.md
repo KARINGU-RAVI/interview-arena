@@ -157,7 +157,7 @@ tests/                  pytest suite + fixtures (tests/local/ is private and git
   LangGraph + CLI, report, own MCP server, Streamlit UI (background worker, design spec)
 - [x] Cleanup: docs reorganised, dead code removed, ruff/vulture clean, Linux-safe lock file
 - [x] Phase 9 — testing & metrics (`docs/test_results.md`, `scripts/run_metrics.py`): gaps 93%/100%, golden 10/10, 16 calls/session, 92 s; consistency 1.1 accepted (Gemini kept as evaluator for capacity; Groq is an option)
-- [x] Phase 10 — README (portfolio), demo GIF placeholder, final checks
+- [x] Phase 10 — README (portfolio) with app screenshots (`docs/screenshots/`, fictional data), final checks
 - [ ] Future: public deployment (Streamlit Community Cloud, `APP_MODE=cloud`), then the roadmap in README.md
 
 ---

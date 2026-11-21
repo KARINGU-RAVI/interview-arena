@@ -10,10 +10,17 @@ interviews you on them, scores every answer against a fixed rubric, and hands yo
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.67-FF4B4B?logo=streamlit&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-![Interview Arena demo](docs/demo.gif)
+## Demo
+
+| | |
+|---|---|
+| ![Upload screen](docs/screenshots/1_upload.png)<br>**1 · Upload** — paste a resume and a job description, or one click on *Try with sample data* | ![Skill gaps screen](docs/screenshots/2_skill_gaps.png)<br>**2 · Skill gaps** — match % and matched / partial / missing skills, with resume evidence |
+| ![Interview screen](docs/screenshots/3_interview.png)<br>**3 · Interview** — one question at a time, progress per round, instant score and feedback | ![Report screen](docs/screenshots/4_report.png)<br>**4 · Report** — overall score, recommendation, next steps, download PDF or send to Gmail |
 
 ▶️ **Watch the full demo:** [VIDEO_LINK]
-📄 **See a real generated report:** [`docs/sample_report.pdf`](docs/sample_report.pdf) (fictional candidate)
+📄 **See a real generated report:** [`docs/sample_report.pdf`](docs/sample_report.pdf)
+
+_All screenshots and the sample report use fictional sample data._
 
 ---
 

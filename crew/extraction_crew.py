@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import logging
 import os
+import random
 import threading
 import time
 from dataclasses import dataclass, field
@@ -32,7 +33,7 @@ from crewai.events.types.llm_events import (  # noqa: E402
 )
 
 import config  # noqa: E402
-from llm.router import reserve_slots  # noqa: E402
+from llm.router import is_retryable, reserve_slots  # noqa: E402
 from schemas import JDProfile, ResumeProfile  # noqa: E402
 
 log = logging.getLogger("interview_arena.crew")
@@ -207,8 +208,54 @@ def _check_inputs(jd_text: str, resume_text: str) -> None:
 # ------------------------------------------------------------ public function
 
 
+def _run_crew_once(
+    provider: str, jd_text: str, resume_text: str
+) -> tuple[JDProfile, ResumeProfile, int, str]:
+    """One crew run on one provider. Returns (jd, resume, llm_calls, label); raises on failure.
+    The raised exception carries .llm_calls so failed attempts still count toward the budget."""
+    llm, label = _build_llm(provider)
+    crew, tasks, agents = _build_crew(llm, jd_text, resume_text)
+    counter = _CallCounter()
+    with _watched_lock:
+        for agent in agents:
+            _watched[str(agent.id)] = counter
+    # CrewAI calls don't pass through the router, so book their 2 RPM slots here
+    # (same process-wide limiter as the router -> never more than 12/min on Gemini).
+    reserve_slots(provider, n=2)
+    start = time.perf_counter()
+    try:
+        crew.kickoff()
+        jd, resume = tasks[0].output.pydantic, tasks[1].output.pydantic
+        # CrewAI leaves .pydantic as None if the reply didn't fit the schema.
+        if not isinstance(jd, JDProfile) or not isinstance(resume, ResumeProfile):
+            raise ValueError("model output did not match the JSON schema")
+        return jd, resume, counter.started, label
+    except Exception as exc:
+        crewai_event_bus.flush()  # count this attempt's calls before reporting them
+        exc.llm_calls, exc.label = counter.started, label  # type: ignore[attr-defined]
+        raise
+    finally:
+        crewai_event_bus.flush()  # make sure every LLM event has been counted
+        with _watched_lock:
+            for agent in agents:
+                _watched.pop(str(agent.id), None)
+        log.info(
+            "extract provider=%s latency=%.2fs llm_calls=%d (ok=%d)",
+            label,
+            time.perf_counter() - start,
+            counter.started,
+            counter.completed,
+        )
+
+
 def extract_profiles(jd_text: str, resume_text: str) -> ExtractionResult:
-    """Run the 2-agent crew. Gemini first; on any failure rebuild with Groq and retry once."""
+    """Run the 2-agent crew: Gemini first, then Groq.
+
+    Like the LLM router, a provider that is busy (429 / 5xx / network) is retried with backoff
+    before falling back — free tiers often return short "high demand" spikes. A wrong answer
+    (output that doesn't fit the schema) goes straight to the next provider. Every attempt's
+    calls are counted, so the session budget stays honest.
+    """
     _check_inputs(jd_text, resume_text)
 
     providers = [
@@ -220,43 +267,25 @@ def extract_profiles(jd_text: str, resume_text: str) -> ExtractionResult:
     total_calls = 0
     attempts: list[str] = []
     for i, provider in enumerate(providers):
-        llm, label = _build_llm(provider)
-        crew, tasks, agents = _build_crew(llm, jd_text, resume_text)
-        counter = _CallCounter()
-        with _watched_lock:
-            for agent in agents:
-                _watched[str(agent.id)] = counter
-        # CrewAI calls don't pass through the router, so book their 2 RPM slots here
-        # (same process-wide limiter as the router -> never more than 12/min on Gemini).
-        reserve_slots(provider, n=2)
-        start = time.perf_counter()
-        try:
-            crew.kickoff()
-            jd, resume = tasks[0].output.pydantic, tasks[1].output.pydantic
-            # CrewAI leaves .pydantic as None if the reply didn't fit the schema.
-            if not isinstance(jd, JDProfile) or not isinstance(resume, ResumeProfile):
-                raise ValueError("model output did not match the JSON schema")
-        except Exception as exc:  # rate limit, bad output, network... -> try next provider
-            crewai_event_bus.flush()  # count this attempt's calls before reporting them
-            attempts.append(f"{label}: failed ({type(exc).__name__}) after {counter.started} call(s)")
-            log.warning("extraction with %s failed: %s", label, type(exc).__name__)
-            continue
-        finally:
-            crewai_event_bus.flush()  # make sure every LLM event has been counted
-            with _watched_lock:
-                for agent in agents:
-                    _watched.pop(str(agent.id), None)
-            total_calls += counter.started
-            log.info(
-                "extract provider=%s latency=%.2fs llm_calls=%d (ok=%d)",
-                label,
-                time.perf_counter() - start,
-                counter.started,
-                counter.completed,
-            )
-
-        attempts.append(f"{label}: ok ({counter.started} calls)")
-        return ExtractionResult(jd, resume, total_calls, label, fallback_used=i > 0, attempts=attempts)
+        for retry in range(config.MAX_RETRIES_PER_PROVIDER + 1):
+            try:
+                jd, resume, calls, label = _run_crew_once(provider, jd_text, resume_text)
+            except Exception as exc:  # provider busy, bad output, network...
+                total_calls += getattr(exc, "llm_calls", 0)
+                label = getattr(exc, "label", provider)
+                attempts.append(
+                    f"{label}: failed ({type(exc).__name__}) after {getattr(exc, 'llm_calls', 0)} call(s)"
+                )
+                log.warning("extraction with %s failed: %s", label, type(exc).__name__)
+                if is_retryable(exc) and retry < config.MAX_RETRIES_PER_PROVIDER:
+                    wait = config.BACKOFF_BASE_SECONDS * (2**retry) + random.uniform(0, 1)
+                    log.info("retrying extraction on %s in %.1fs", label, wait)
+                    time.sleep(wait)
+                    continue
+                break  # not worth retrying (or retries used up): next provider
+            total_calls += calls
+            attempts.append(f"{label}: ok ({calls} calls)")
+            return ExtractionResult(jd, resume, total_calls, label, fallback_used=i > 0, attempts=attempts)
 
     raise ExtractionError(
         "Could not read the JD and resume right now (all AI providers failed). "

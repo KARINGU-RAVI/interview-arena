@@ -359,7 +359,7 @@ interview-arena/
 
 ---
 
-## 17. Success Metrics (for README / resume)
+## 17. Success Metrics (for the README)
 
 - Session cost: **₹0**
 - LLM calls per session: ~19

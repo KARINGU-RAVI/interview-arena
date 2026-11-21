@@ -144,7 +144,7 @@ def _status_code(exc: Exception) -> int | None:
     return None
 
 
-def _is_retryable(exc: Exception) -> bool:
+def is_retryable(exc: Exception) -> bool:
     """429 (rate limit), 5xx (server trouble), timeouts and network errors are worth retrying.
 
     400/401/403/404 are not: a bad key or unknown model will fail every time,
@@ -463,7 +463,7 @@ class LLMRouter:
                     status = _status_code(exc)
                     # Log the error type + status only: messages could echo request details.
                     log.warning("%s failed: %s (status=%s)", provider.name, type(exc).__name__, status)
-                    if _is_retryable(exc) and retry < config.MAX_RETRIES_PER_PROVIDER:
+                    if is_retryable(exc) and retry < config.MAX_RETRIES_PER_PROVIDER:
                         wait = config.BACKOFF_BASE_SECONDS * (2**retry) + random.uniform(0, 1)
                         log.info("retrying %s in %.1fs", provider.name, wait)
                         time.sleep(wait)

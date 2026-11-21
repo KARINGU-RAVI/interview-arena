@@ -96,7 +96,7 @@ rag/store.py            FastEmbed + per-session in-memory Chroma
 ui/                     styles.py (only CSS), components.py, validation.py
 mcp_server/server.py    FastMCP: save_report_pdf, create_gmail_draft (no send tool)
 prompts/                7 prompt files
-scripts/                test_providers.py, try_app.py, try_mcp.py, run_prod.ps1
+scripts/                test_providers.py, try_app.py, try_mcp.py, run_metrics.py, run_prod.ps1
 tests/                  pytest suite + fixtures (tests/local/ is private and git-ignored)
 ```
 
@@ -156,7 +156,7 @@ tests/                  pytest suite + fixtures (tests/local/ is private and git
 - [x] Phases 0–8: skeleton, LLM router, CrewAI extraction, RAG + gap analysis, planner + evaluator,
   LangGraph + CLI, report, own MCP server, Streamlit UI (background worker, design spec)
 - [x] Cleanup: docs reorganised, dead code removed, ruff/vulture clean, Linux-safe lock file
-- [ ] Phase 9 — testing & metrics (`docs/test_results.md`)
+- [x] Phase 9 — testing & metrics (`docs/test_results.md`, `scripts/run_metrics.py`): gaps 93%/100%, golden 10/10, 16 calls/session, 92 s; consistency 1.1 accepted (Gemini kept as evaluator for capacity; Groq is an option)
 - [ ] Phase 10 — ship (README, deploy)
 
 ---

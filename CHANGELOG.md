@@ -34,6 +34,12 @@ All notable changes to Interview Arena. The project was built in phases; this fi
 - **Phase 8 — Streamlit UI.** Four screens (Upload, Skill gaps, Interview, Report) per
   `docs/ui_design_spec.md`: theme tokens, step bar, "Try with sample data", per-field validation,
   segmented progress, result cards, report actions (Download PDF and Send to my Gmail both available).
+- **Phase 9 — Testing & metrics.** Live measurements (`scripts/run_metrics.py`,
+  `docs/test_results.md`): gap accuracy 93% / 100%, golden evaluator set 10 / 10, 16 LLM calls and
+  ~92 s per session, scoring drift up to 1.1 (accepted: Gemini kept as the scorer for capacity;
+  Groq available as an option). Sample report PDF from a fictional session.
+- **Phase 10 — README.** Recruiter-friendly README (architecture diagram, results, engineering
+  highlights, quick start), demo GIF placeholder. Public deployment is left as future work.
 
 ### Fixes
 
@@ -43,6 +49,7 @@ All notable changes to Interview Arena. The project was built in phases; this fi
 - Graph steps now run in a background worker thread. A browser refresh or rerun used to stop the
   Streamlit script between two graph nodes ("session stopped part-way"); steps now always finish at a
   checkpointed pause, double submits are refused, and an unfinished step is resumed once, silently.
+- CrewAI extraction now retries busy providers (429 / 5xx) with backoff, like the LLM router.
 - Planner prefers projects from the resume's projects section; gap analysis treats everyday developer
   tools (Git, Jira, …) listed by a working developer as matched.
 

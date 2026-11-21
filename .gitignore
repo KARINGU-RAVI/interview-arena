@@ -21,3 +21,5 @@ chroma/
 data/resume_1_*.pdf
 tests/local/
 .ruff_cache/
+
+*.zip

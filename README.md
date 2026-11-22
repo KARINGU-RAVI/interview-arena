@@ -3,6 +3,8 @@
 **An agentic AI mock interviewer: give it a resume and a job description — it finds your skill gaps,
 interviews you on them, scores every answer against a fixed rubric, and hands you a report.**
 
+▶️ **[Demo video](https://drive.google.com/file/d/1naNljyAc97IagnVHyZCQ_OvD1YUgl4-J/view)**
+
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
 ![LangGraph](https://img.shields.io/badge/LangGraph-1.2-1C3C3C)
 ![CrewAI](https://img.shields.io/badge/CrewAI-1.15-FF5A50)
@@ -17,7 +19,7 @@ interviews you on them, scores every answer against a fixed rubric, and hands yo
 | ![Upload screen](docs/screenshots/1_upload.png)<br>**1 · Upload** — paste a resume and a job description, or one click on *Try with sample data* | ![Skill gaps screen](docs/screenshots/2_skill_gaps.png)<br>**2 · Skill gaps** — match % and matched / partial / missing skills, with resume evidence |
 | ![Interview screen](docs/screenshots/3_interview.png)<br>**3 · Interview** — one question at a time, progress per round, instant score and feedback | ![Report screen](docs/screenshots/4_report.png)<br>**4 · Report** — overall score, recommendation, next steps, download PDF or send to Gmail |
 
-▶️ **Watch the full demo:** [VIDEO_LINK]
+▶️ **Watch the full demo:** [Demo video](https://drive.google.com/file/d/1naNljyAc97IagnVHyZCQ_OvD1YUgl4-J/view)
 📄 **See a real generated report:** [`docs/sample_report.pdf`](docs/sample_report.pdf)
 
 _All screenshots and the sample report use fictional sample data._
